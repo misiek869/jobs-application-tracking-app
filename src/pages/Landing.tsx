@@ -1,7 +1,7 @@
-import styled from 'styled-components'
 import main from '../assets/images/main.svg'
 import logo from '../assets/images/logo.svg'
 import { Link } from 'react-router'
+import Wrapper from '../assets/wrappers/LandingPage'
 
 const Landing = () => {
 	return (
