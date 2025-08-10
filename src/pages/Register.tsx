@@ -1,4 +1,4 @@
-import Wrapper from '../assets/wrappers/RegisterPage'
+import Wrapper from '../assets/wrappers/LoginPage'
 import { Link } from 'react-router'
 import { FormRow, Logo } from '../components'
 
