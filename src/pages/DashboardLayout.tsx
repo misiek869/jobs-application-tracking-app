@@ -59,6 +59,14 @@ const DashboardLayout = () => {
 	)
 }
 
-export const useDashboardContext = () => useContext(DashboardContext)
+export const useDashboardContext = (): DashboardContextType => {
+	const context = useContext(DashboardContext)
+	if (!context) {
+		throw new Error(
+			'useDashboardContext must be used within DashboardContext.Provider'
+		)
+	}
+	return context
+}
 
 export default DashboardLayout
