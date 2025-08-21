@@ -1,23 +1,53 @@
-import React from 'react'
 import { Outlet } from 'react-router'
 import Wrapper from '../assets/wrappers/Dashboard'
 import { BigSidebar, Navbar, SmallSidebar } from '../components'
+import { createContext, useContext, useState } from 'react'
+
+const DashboardContext = createContext()
 
 const DashboardLayout = () => {
+	// temporary
+	const user = { name: 'john' }
+	const [showSidebar, setShowSidebar] = useState<boolean>(false)
+	const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false)
+
+	const toggleDarkTheme = () => {
+		console.log('dark.theme')
+	}
+	const toggleSidebar = (): void => {
+		setShowSidebar(prev => !prev)
+	}
+
+	const logoutUser = async () => {
+		console.log('logout')
+	}
+
 	return (
-		<Wrapper>
-			<main className='dashboard'>
-				<SmallSidebar />
-				<BigSidebar />
-				<div>
-					<Navbar />
-					<div className='dashboard-page'>
-						<Outlet />
+		<DashboardContext.Provider
+			value={{
+				user,
+				showSidebar,
+				isDarkTheme,
+				toggleDarkTheme,
+				toggleSidebar,
+				logoutUser,
+			}}>
+			<Wrapper>
+				<main className='dashboard'>
+					<SmallSidebar />
+					<BigSidebar />
+					<div>
+						<Navbar />
+						<div className='dashboard-page'>
+							<Outlet />
+						</div>
 					</div>
-				</div>
-			</main>
-		</Wrapper>
+				</main>
+			</Wrapper>
+		</DashboardContext.Provider>
 	)
 }
+
+export const useDasboardContext = () => useContext(DashboardContext)
 
 export default DashboardLayout
