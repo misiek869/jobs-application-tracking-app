@@ -3,7 +3,18 @@ import Wrapper from '../assets/wrappers/Dashboard'
 import { BigSidebar, Navbar, SmallSidebar } from '../components'
 import { createContext, useContext, useState } from 'react'
 
-const DashboardContext = createContext()
+type DashboardContextType = {
+	user: { name: string }
+	showSidebar: boolean
+	isDarkTheme: boolean
+	toggleDarkTheme: () => void
+	toggleSidebar: () => void
+	logoutUser: () => Promise<void>
+}
+
+const DashboardContext = createContext<DashboardContextType | undefined>(
+	undefined
+)
 
 const DashboardLayout = () => {
 	// temporary
@@ -48,6 +59,6 @@ const DashboardLayout = () => {
 	)
 }
 
-export const useDasboardContext = () => useContext(DashboardContext)
+export const useDashboardContext = () => useContext(DashboardContext)
 
 export default DashboardLayout
