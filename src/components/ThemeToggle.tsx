@@ -7,7 +7,11 @@ const ThemeToggle = () => {
 
 	return (
 		<Wrapper onClick={toggleDarkTheme}>
-			{isDarkTheme ? <FaSun className='toggle-icon' /> : <FaMoon />}
+			{isDarkTheme ? (
+				<FaSun className='toggle-icon' />
+			) : (
+				<FaMoon className='toggle-icon' />
+			)}
 		</Wrapper>
 	)
 }
