@@ -16,18 +16,26 @@ const DashboardContext = createContext<DashboardContextType | undefined>(
 	undefined
 )
 
+const checkTheme = () => {
+	const isDarkTheme = localStorage.getItem('darkTheme') === 'true'
+	document.body.classList.toggle('dark-theme', isDarkTheme)
+
+	return isDarkTheme
+}
+
 const DashboardLayout = () => {
 	// temporary
 	const user = { name: 'john' }
 	const [showSidebar, setShowSidebar] = useState<boolean>(false)
-	const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false)
+	const [isDarkTheme, setIsDarkTheme] = useState<boolean>(checkTheme())
 
 	const toggleDarkTheme = () => {
 		const newDarkTheme = !isDarkTheme
 		setIsDarkTheme(newDarkTheme)
-
 		document.body.classList.toggle('dark-theme', newDarkTheme)
+		localStorage.setItem('darkTheme', String(newDarkTheme))
 	}
+
 	const toggleSidebar = (): void => {
 		setShowSidebar(prev => !prev)
 	}
