@@ -23,7 +23,10 @@ const DashboardLayout = () => {
 	const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false)
 
 	const toggleDarkTheme = () => {
-		console.log('dark.theme')
+		const newDarkTheme = !isDarkTheme
+		setIsDarkTheme(newDarkTheme)
+
+		document.body.classList.toggle('dark-theme', newDarkTheme)
 	}
 	const toggleSidebar = (): void => {
 		setShowSidebar(prev => !prev)
